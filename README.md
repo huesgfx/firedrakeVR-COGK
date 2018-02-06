@@ -32,6 +32,18 @@ game can puase at the exzact point in the level when player pauses game or remov
 Game preformance is key and  app MUST maintain a 60FPS rate at all times.  So adding this check to the UPDATE() loop seems like it will incure a preformance cost.
 
 
+update:  
+Functional usecase #1  Start of app
+Player starts app.   App does check to see if controller is present.  If so, app loads unitysccene/game level #1  If not, screen loads unity scene/game level (nojoy) comprised on a single splash screen that explains “no controller present, waits five seconds, quits app. (for script reuasablitly a public variable should be declared for “load next level” so that on each “controller check loop” at each start of every level a new unity scne can be declared 
+
+Functional Use case #2  player loads a saved game
+App auto saves using Json data file. Data file loads on start of app after user has already played.   There is no save/load screen within the game.   Game will automatically save game at the last level that is played and will load at the start of last played level on re starup.        Controller check needs to happen at the start of a reloaded game.
+
+Functional usecase #3   Player pauses game in mid play.
+Player may be playing in the middle of a level and take mobile VR headset off.  Game will pause while headset is off.  (through some Oculus SDK majic that is unknown at this time)  Headset may be off for one to 30 minutes.  Generally controllers go to sleep after five minutes of inactivity….   If player comes back to game,  after a pause, controller check will happen   If controller is present, play through current level, if no controller is preset, then load nojoy unity scene
+
+
+
 Scripts attached:
 
 Splashload_c.cs:  loads the intro scene, waits five seconds then loads the next playable level (in this case scne 1)
